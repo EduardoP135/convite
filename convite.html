@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Convite para o Cinema 🎬</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #2e2e2e;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #000;
+    }
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #f39c12;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #e67e22;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Joguinho do Cinema 🎬</h1>
+    <div id="quiz">
+      <div id="pergunta1">
+        <p>Qual o seu nome?</p>
+        <input type="text" id="nomeInput" placeholder="Digite seu nome..." />
+        <br />
+        <button onclick="proximaPergunta()">Continuar</button>
+      </div>
+
+      <div id="pergunta2" style="display:none;">
+        <p>Qual gênero de filme você prefere?</p>
+        <button onclick="responder('Ação')">Ação</button>
+        <button onclick="responder('Comédia')">Comédia</button>
+        <button onclick="responder('Romance')">Romance</button>
+        <button onclick="responder('Terror')">Terror</button>
+      </div>
+
+      <div id="pergunta3" style="display:none;">
+        <p>O que você mais gosta de comer no cinema?</p>
+        <button onclick="responder2('Pipoca')">Pipoca</button>
+        <button onclick="responder2('Chocolate')">Chocolate</button>
+        <button onclick="responder2('Nachos')">Nachos</button>
+        <button onclick="responder2('Bala de goma')">Bala de goma</button>
+      </div>
+
+      <div id="resultado" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script>
+    let nome = '';
+    let genero = '';
+    let comida = '';
+
+    function proximaPergunta() {
+      nome = document.getElementById('nomeInput').value.trim();
+      if (nome === '') {
+        alert('Por favor, digite seu nome!');
+        return;
+      }
+      document.getElementById('pergunta1').style.display = 'none';
+      document.getElementById('pergunta2').style.display = 'block';
+    }
+
+    function responder(respostaGenero) {
+      genero = respostaGenero;
+      document.getElementById('pergunta2').style.display = 'none';
+      document.getElementById('pergunta3').style.display = 'block';
+    }
+
+    function responder2(respostaComida) {
+      comida = respostaComida;
+      document.getElementById('pergunta3').style.display = 'none';
+      const resultado = document.getElementById('resultado');
+      resultado.innerHTML = `
+        <p>🎉 ${nome}, você tem ótimo gosto!</p>
+        <p>💡 Que tal um filme de <strong>${genero}</strong> com <strong>${comida}</strong>?</p>
+        <p>🎟️ Topa ir ao cinema comigo? 😄</p>
+      `;
+      resultado.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
